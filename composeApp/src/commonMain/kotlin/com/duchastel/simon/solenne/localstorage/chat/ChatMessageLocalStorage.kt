@@ -1,9 +1,7 @@
 package com.duchastel.simon.solenne.localstorage.chat
 
-import kotlinx.coroutines.flow.Flow
-
 interface ChatMessageLocalStorage {
-    fun getMessagesForConversation(conversationId: String): Flow<List<LocalStorageChatMessage>>
+    suspend fun getMessagesForConversation(conversationId: String): List<LocalStorageChatMessage>
 }
 
 data class LocalStorageChatMessage(

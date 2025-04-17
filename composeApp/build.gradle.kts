@@ -8,8 +8,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    id("dev.zacsweers.metro")
-    id("kotlin-parcelize")
+    alias(libs.plugins.metro)
+    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.kotlinParcelize)
 }
 
 kotlin {

@@ -1,26 +1,24 @@
 package com.duchastel.simon.solenne.data.chat
 
-import com.duchastel.simon.solenne.localstorage.chat.ChatMessageLocalStorage
+
 import com.duchastel.simon.solenne.localstorage.chat.LocalStorageChatMessage
 import dev.zacsweers.metro.Inject
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.flow
 
 interface ChatMessageRepository {
     fun getMessagesForConversation(conversationId: String): Flow<List<ChatMessage>>
 }
 
 class ChatMessageRepositoryImpl @Inject constructor(
-    private val chatMessageLocalStorage: ChatMessageLocalStorage,
+//    private val chatMessageLocalStorage: ChatMessageLocalStorage,
 ): ChatMessageRepository {
 
     override fun getMessagesForConversation(conversationId: String): Flow<List<ChatMessage>> {
-        return chatMessageLocalStorage.getMessagesForConversation(conversationId)
-            .distinctUntilChanged()
-            .map { messages ->
-                messages.map { it.toChatMessage() }
-            }
+        return flow {
+//            val storedMessages = chatMessageLocalStorage.getMessagesForConversation(conversationId)
+//            emit(storedMessages.map { it.toChatMessage() })
+        }
     }
 }
 

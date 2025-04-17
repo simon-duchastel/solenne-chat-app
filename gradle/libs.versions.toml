@@ -10,6 +10,7 @@ circuit = "0.27.1"
 kotlin = "2.1.20"
 kotlinx-coroutines = "1.10.2"
 metro = "0.1.2"
+sqldelight = "2.0.2"
 
 [libraries]
 circuit-test = { module = "com.slack.circuit:circuit-test", version.ref = "circuit" }
@@ -30,4 +31,6 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinParcelize = { id = "kotlin-parcelize" }
 metro = { id = "dev.zacsweers.metro", version.ref = "metro" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
