@@ -1,7 +1,5 @@
 package com.duchastel.simon.solenne.di
 
-import com.duchastel.simon.solenne.data.ChatMessageRepository
-import com.duchastel.simon.solenne.data.ChatMessageRepositoryImpl
 import com.duchastel.simon.solenne.screens.chat.ChatPresenter
 import com.slack.circuit.foundation.Circuit
 import dev.zacsweers.metro.AppScope
