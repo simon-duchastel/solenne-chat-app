@@ -1,0 +1,25 @@
+-- ChatMessage.sq
+CREATE TABLE IF NOT EXISTS ChatMessage (
+    id TEXT PRIMARY KEY NOT NULL,
+    conversation_id TEXT NOT NULL,
+    author_type INTEGER NOT NULL CHECK (author_type IN (0, 1)), -- 0 = USER, 1 = AI
+    content TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+
+    FOREIGN KEY (conversation_id) REFERENCES Conversation(id)
+);
+
+-- Creates an index to improve lookup performance by conversation_id
+CREATE INDEX chat_message_conversation_id_index ON ChatMessage(conversation_id);
+
+-- Query to get all messages for a specific conversation, ordered by timestamp
+getMessagesForConversation:
+SELECT
+    id,
+    conversation_id AS conversationId,
+    author_type AS author,
+    content,
+    timestamp
+FROM ChatMessage
+WHERE conversation_id = ?
+ORDER BY timestamp ASC;

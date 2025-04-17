@@ -3,17 +3,17 @@ package com.duchastel.simon.solenne
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import dev.zacsweers.metro.createGraph
-import com.duchastel.simon.solenne.di.ApplicationGraph
-import com.duchastel.simon.solenne.App
+import com.duchastel.simon.solenne.di.AndroidApplicationGraph
+import dev.zacsweers.metro.createGraphFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val applicationComponent = createGraph<ApplicationGraph>()
+        val applicationGraph = createGraphFactory<AndroidApplicationGraph.Factory>()
+            .create(application.applicationContext)
         setContent {
-            App(applicationComponent.circuit)
+            App(applicationGraph.circuit)
         }
     }
 }

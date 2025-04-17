@@ -1,19 +1,15 @@
 package com.duchastel.simon.solenne.di
 
-import com.duchastel.simon.solenne.data.ChatMessageRepository
-import com.duchastel.simon.solenne.data.ChatMessageRepositoryImpl
 import com.duchastel.simon.solenne.screens.chat.ChatPresenter
-import com.slack.circuit.foundation.Circuit
-import dev.zacsweers.metro.AppScope
-import dev.zacsweers.metro.DependencyGraph
-import dev.zacsweers.metro.Provides
-import dev.zacsweers.metro.SingleIn
 import com.duchastel.simon.solenne.screens.chat.ChatScreen
 import com.duchastel.simon.solenne.screens.chat.ChatUi
+import com.slack.circuit.foundation.Circuit
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.Provides
+import dev.zacsweers.metro.SingleIn
 
-@DependencyGraph(AppScope::class)
 @SingleIn(AppScope::class)
-interface ApplicationGraph: DataProviders {
+interface ApplicationGraph: DataProviders, DatabaseProviders {
     val circuit: Circuit
 
     @Provides

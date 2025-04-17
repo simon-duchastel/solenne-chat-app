@@ -2,14 +2,13 @@ package com.duchastel.simon.solenne
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
-import kotlinx.browser.document
+import com.duchastel.simon.solenne.di.WasmJsApplicationGraph
 import dev.zacsweers.metro.createGraph
-import com.duchastel.simon.solenne.di.ApplicationGraph
-import com.duchastel.simon.solenne.App
+import kotlinx.browser.document
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
-    val applicationGraph = createGraph<ApplicationGraph>()
+    val applicationGraph = createGraph<WasmJsApplicationGraph>()
     ComposeViewport(document.body!!) {
         App(applicationGraph.circuit)
     }
