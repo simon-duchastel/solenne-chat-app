@@ -9,7 +9,7 @@ import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.SingleIn
 
 @SingleIn(AppScope::class)
-interface ApplicationGraph: DataProviders {
+interface ApplicationGraph: DataProviders, DatabaseProviders {
     val circuit: Circuit
 
     @Provides

@@ -6,6 +6,4 @@ import dev.zacsweers.metro.SingleIn
 
 @DependencyGraph(AppScope::class)
 @SingleIn(AppScope::class)
-interface WasmJsApplicationGraph : ApplicationGraph {
-    
-}
+interface WasmJsApplicationGraph : ApplicationGraph

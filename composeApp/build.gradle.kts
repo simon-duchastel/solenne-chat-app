@@ -59,7 +59,9 @@ kotlin {
             }
         }
         binaries.executable()
+        useCommonJs()
     }
+    applyDefaultHierarchyTemplate()
     
     sourceSets {
         val desktopMain by getting
@@ -77,30 +79,34 @@ kotlin {
             implementation(libs.circuit.foundation)
             implementation(libs.circuit.runtime)
             api(libs.circuit.codegen.annotations)
+            implementation(libs.sqldelight.coroutines.extensions)
         }
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-        }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.sqldelight.android.driver)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
+            implementation(libs.sqldelight.sqlite.driver)
+        }
+        iosMain.dependencies {
+            implementation(libs.sqldelight.native.driver)
+        }
+        wasmJsMain.dependencies {
+            implementation("me.gulya.sqldelight:web-worker-driver:2.0.2-wasm-web-worker-3")
+            implementation("me.gulya.sqldelight:primitive-adapters:2.0.2-wasm-web-worker-3")
+//            implementation(libs.sqldelight.webworker.driver)
+            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.0.2"))
+            implementation(npm("sql.js", "1.8.0"))
+            implementation(devNpm("copy-webpack-plugin", "9.1.0"))
         }
 
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.kotlinx.coroutines.test)
-            implementation(libs.kotlin.test.junit)
+//            implementation(libs.kotlin.test.junit)
             implementation(libs.circuit.test)
         }
     }
@@ -138,6 +144,16 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName = "com.duchastel.simon.solenne"
+            generateAsync = true
+            srcDirs.setFrom("src/commonMain/sqldelight")
+        }
     }
 }
 
